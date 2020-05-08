@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width" />
+		<title>Previsão do Tempo - Login</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+	</head>
+	<body>
+		<div style="margin: 150px">
+			<div  align="center" style="color:black">
+				<h3 class="panel-title"><b>PÁGINA DE LOGIN</b></h3>
+			</div>
+			<div class="panel-body">
+				<form class="form-inline" method="post" th:object="${usuario}" th:action="@{/fazerLogin}" style="margin: 20px 0">
+					<div align="center">
+						<input required type="text" class="form-control" placeholder="LOGIN" th:field="*{login}"/>
+						</div>
+						<div align="center" style="margin:10px">
+						<input required type="password" class="form-control" placeholder="PASSWORD" th:field="*{senha}"/>
+						</div>
+						<div align="center">
+						<button type="submit" class="btn btn-secondary"><b>Logar</b></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

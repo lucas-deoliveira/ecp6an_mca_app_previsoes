@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Clima Tempo</title>
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+</head>
+
+	<body>
+		<div align="center">
+			<h1 style="margin:10px"><b> PREVISÃO DO TEMPO</b></h1>
+		</div>
+		<div class="panel panel-primary" style="margin: 10px;background-color: #FFFAFA">
+			<div class="panel-heading" align="center" >
+				<h3 class="panel-display-4"><b>São Paulo - SP</b></h3>
+			</div>
+			<div class="panel-body" align="center">
+			<form class="form-inline" method="POST" style="margin:20px 0" th:object="${previsoesDoTempo}" th:action="@{/previsoes}">
+					<div class="form-group">
+					<div align="center">
+						<input type="text" class="form-control " placeholder="Data e Hora" th:field="*{data}" style="margin:10px 0"/>
+						<input type="text" class="form-control " placeholder="Dia da Semana" th:field="*{semana}"/>
+						<input type="text" class="form-control " placeholder="Temperatura Min" th:field="*{tempMin}"/>
+						<input type="text" class="form-control" placeholder="Temperatura Max" th:field="*{tempMax}"/>
+					</div>
+					<div align="center">	
+						<input type="text" class="form-control" placeholder="Umidade Ar" th:field="*{umi}"/>
+						<input type="text" class="form-control" placeholder="Observação" th:field="*{descricao}" />
+						<input type="text" class="form-control" placeholder="Latitude" th:field="*{la}"/>
+						<input type="text" class="form-control" placeholder="Longitude" th:field="*{lo}"/>
+					</div>	
+						<div align="center" style="margin: 10px">
+							<button type="submit" class="btn btn-secondary"style="background-color: black;color:white"><b>Inserir</b></button>
+						</div>
+					</div>
+				</form>
+				<table class="table">
+					<thead>
+						<tr style="color: #4169E1">
+							<th>Data</th>
+							<th>Temp.Mín</th>
+							<th>Temp.Máx</th>
+							<th>Umidade</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+					 	<tr th:each="prev:${previsoesTemp}">
+					 		<td th:text="${prev.data}"></td>
+							<td th:text="${prev.semana}"></td>
+							<td th:text="${prev.tempMin} + ' °CC'"></td>
+							<td th:text="${prev.tempMax} + ' °CC'"></td>
+							<td th:text="${prev.umi} + '%'"></td>
+							<td th:text="${prev.descricao}"></td>
+							<td th:text="${prev.la}"></td>
+							<td th:text="${prev.lo}"></td>	
+					</tbody>
+				</table>
+				<form class="form-inline" method="POST" th:object="${usuario}" th:action="@{/fazerLogout}" style="margin:20px 0">
+					<div class="form-inline my-2 my-lg-0">
+						<button type="submit" class="btn btn-secondary" style="background-color: black;color:white"><b>Sair</b></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+
+</html>
